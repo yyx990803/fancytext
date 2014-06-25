@@ -1,0 +1,37 @@
+curve = cubic-bezier(0.4, 0.0, 0, 1)
+
+.fancy-text
+    position relative
+    .inner
+        text-align center
+        position absolute
+        top 0
+        left 0
+        width 100%
+        opacity 1
+        transition opacity .3s curve
+        word-wrap break-word
+        &.fade
+            opacity 0
+    .word
+        display inline-block
+        transition all .5s curve
+        opacity 1
+        margin-right .2em
+        &.float
+            opacity 0
+            -webkit-transform translate3d(0, 10px, 0)
+            -moz-transform translate3d(0, 10px, 0)
+            transform translate3d(0, 10px, 0)
+        &.fade
+            opacity 0
+        &.slide-left
+            opacity 0
+            -webkit-transform translate3d(20px, 0, 0)
+            -moz-transform translate3d(20px, 0, 0)
+            transform translate3d(20px, 0, 0)
+        &.slide-right
+            opacity 0
+            -webkit-transform translate3d(-20px, 0, 0)
+            -moz-transform translate3d(-20px, 0, 0)
+            transform translate3d(-20px, 0, 0)
