@@ -1,4 +1,4 @@
-require('insert-css')('.fancy-text {  position: relative;}.fancy-text .inner {  text-align: center;  position: absolute;  top: 0;  left: 0;  width: 100%;  opacity: 1;  transition: opacity 0.3s cubic-bezier(0.4, 0, 0, 1);  word-wrap: break-word;}.fancy-text .inner.fade {  opacity: 0;}.fancy-text .word {  display: inline-block;  transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);  opacity: 1;  margin-right: 0.2em;}.fancy-text .word.float {  opacity: 0;  -webkit-transform: translate3d(0, 10px, 0);  -moz-transform: translate3d(0, 10px, 0);  transform: translate3d(0, 10px, 0);}.fancy-text .word.fade {  opacity: 0;}.fancy-text .word.slide-left {  opacity: 0;  -webkit-transform: translate3d(20px, 0, 0);  -moz-transform: translate3d(20px, 0, 0);  transform: translate3d(20px, 0, 0);}.fancy-text .word.slide-right {  opacity: 0;  -webkit-transform: translate3d(-20px, 0, 0);  -moz-transform: translate3d(-20px, 0, 0);  transform: translate3d(-20px, 0, 0);}')
+require('insert-css')(require('./fancytext.styl'))
 
 var transitionend = require('transitionend-property')
 

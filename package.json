@@ -1,14 +1,15 @@
 {
   "name": "fancytext",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "fancy text with transitions",
-  "main": "index.js",
+  "main": "fancytext.js",
   "dependencies": {
     "insert-css": "^0.2.0",
-    "transitionend-property": "^0.0.2"
+    "transitionend-property": "^0.0.2",
+    "stylify": "^0.1.5"
   },
-  "devDependencies": {
-    "stylus": "^0.46.3"
+  "browserify": {
+    "transform": ["stylify"]
   },
   "author": "Evan You",
   "license": "MIT"
