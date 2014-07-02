@@ -14,9 +14,11 @@ FancyText.prototype.setText = function (text, cb) {
     if (this.text === text) return
     this.text = text
     this.cb = cb
-    this.words = text.split(' ')
     this.fadeCurrent()
-    this.fadeInNew()
+    this.words = text.split(' ')
+    if (this.words.length) {
+        this.fadeInNew()
+    }
 }
 
 FancyText.prototype.fadeCurrent = function () {
@@ -56,6 +58,14 @@ FancyText.prototype.fadeInNew = function () {
             }
         }, (i + 1) * interval)
     })
+
+    // adjust multi-line vertical positioning
+    var h = newWords.offsetHeight,
+        s = newWords.firstChild.offsetHeight
+    if (h !== s) {
+        var offset = (h - s) / 2
+        newWords.style.marginTop = '-' + offset + 'px'
+    }
 
     function onEnd () {
         lastEl.removeEventListener(transitionend, onEnd)

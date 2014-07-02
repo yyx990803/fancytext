@@ -1,6 +1,6 @@
 {
   "name": "fancytext",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "fancy text with transitions",
   "main": "fancytext.js",
   "dependencies": {
