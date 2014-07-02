@@ -10,8 +10,8 @@ function FancyText (options) {
     this.effect = options.effect || 'float'
 }
 
-FancyText.prototype.setText = function (text, cb) {
-    if (this.text === text) return
+FancyText.prototype.setText = function (text, cb, force) {
+    if (this.text === text && !force) return
     this.text = text
     this.cb = cb
     this.fadeCurrent()
