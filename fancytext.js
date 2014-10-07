@@ -27,9 +27,11 @@ FancyText.prototype.fadeCurrent = function () {
     if (!cur) return
     cur.classList.add('fade')
     cur.addEventListener(transitionend, onEnd)
-    function onEnd () {
-        cur.removeEventListener(transitionend, onEnd)
-        el.removeChild(cur)
+    function onEnd (e) {
+        if (e.target === cur) {
+            cur.removeEventListener(transitionend, onEnd)
+            el.removeChild(cur)
+        }
     }
 }
 
@@ -60,12 +62,9 @@ FancyText.prototype.fadeInNew = function () {
     })
 
     // adjust multi-line vertical positioning
-    var h = newWords.offsetHeight,
-        s = newWords.firstChild.offsetHeight
-    if (h !== s) {
-        var offset = (h - s) / 2
-        newWords.style.marginTop = '-' + offset + 'px'
-    }
+    var h = newWords.offsetHeight
+    var offset = ~~(h / 2)
+    newWords.style.marginTop = '-' + offset + 'px'
 
     function onEnd () {
         lastEl.removeEventListener(transitionend, onEnd)
