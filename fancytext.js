@@ -8,6 +8,7 @@ function FancyText (options) {
     this.el.classList.add('fancy-text')
     this.interval = options.interval || 50
     this.effect = options.effect || 'float'
+    this.order = 1
 }
 
 FancyText.prototype.setText = function (text, cb, force) {
@@ -15,7 +16,7 @@ FancyText.prototype.setText = function (text, cb, force) {
     this.text = text
     this.cb = cb
     this.fadeCurrent()
-    this.words = text.split(' ')
+    this.words = text.replace(/\\n/g, ' <br> ').split(/\s+/)
     if (this.words.length) {
         this.fadeInNew()
     }
@@ -42,23 +43,27 @@ FancyText.prototype.fadeInNew = function () {
         total    = this.words.length,
         cb       = this.cb,
         effect   = this.effect,
+        reversed = this.order < 0,
         lastEl   = null
 
     newWords.classList.add('inner')
     this.el.appendChild(newWords)
 
     this.words.forEach(function (w, i) {
-        var wordEl = document.createElement('span')
-        wordEl.textContent = w
+        var wordEl = document.createElement(w === '<br>' ? 'br' : 'span')
+        wordEl.innerHTML = w
         wordEl.className = 'word ' + effect
         newWords.appendChild(wordEl)
+        var delay = (reversed
+            ? (total - i - 1)
+            : (i + 1)) * interval
         var id = setTimeout(function () {
             wordEl.classList.remove(effect)
             if (cb && i >= total - 1) {
                 lastEl = wordEl
                 wordEl.addEventListener(transitionend, onEnd)
             }
-        }, (i + 1) * interval)
+        }, delay)
     })
 
     // adjust multi-line vertical positioning
